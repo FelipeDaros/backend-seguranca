@@ -23,6 +23,9 @@ export class Occurrence{
   @Column()
   situation: string;
 
+  @Column()
+  photo: string;
+
   @CreateDateColumn()
   date_occurrence: Date;
 

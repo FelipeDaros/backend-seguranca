@@ -22,10 +22,8 @@ export class ServicePointService {
 
     return this.servicePointService.save({
       id: uuid(),
-      latitude: pointService.latitude,
-      latitudeDelta: pointService.latitudeDelta,
-      longitude: pointService.longitude,
-      longitudeDelta: pointService.longitudeDelta,
+      latitude: String(pointService.latitude),
+      longitude: String(pointService.longitude),
       locale: pointService.locale,
       stats: 'A',
       qrcode: qrcodeHash

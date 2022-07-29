@@ -14,12 +14,6 @@ export class ServicePoint{
   longitude: string;
 
   @Column()
-  latitudeDelta: string;
-
-  @Column()
-  longitudeDelta: string;
-
-  @Column()
   locale: string;
 
   @Column({length: 1})

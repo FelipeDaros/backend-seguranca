@@ -10,12 +10,6 @@ export class CreateServicePointDto{
   longitude: string;
 
   @IsString()
-  latitudeDelta: string;
-
-  @IsString()
-  longitudeDelta: string;
-
-  @IsString()
   locale: string;
 
   @IsEmpty()

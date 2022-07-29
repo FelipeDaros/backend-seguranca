@@ -4,16 +4,16 @@ import { IsEmpty, IsString} from "class-validator";
 export class CreateServicePointDto{
 
   @IsString()
-  latitude: number;
+  latitude: string;
 
   @IsString()
-  longitude: number;
+  longitude: string;
 
   @IsString()
-  latitudeDelta: number;
+  latitudeDelta: string;
 
   @IsString()
-  longitudeDelta: number;
+  longitudeDelta: string;
 
   @IsString()
   locale: string;

@@ -8,16 +8,16 @@ export class ServicePoint{
   id: string;
 
   @Column()
-  latitude: number;
+  latitude: string;
 
   @Column()
-  longitude: number;
+  longitude: string;
 
   @Column()
-  latitudeDelta: number;
+  latitudeDelta: string;
 
   @Column()
-  longitudeDelta: number;
+  longitudeDelta: string;
 
   @Column()
   locale: string;

@@ -11,6 +11,7 @@ export class UsersController {
   constructor(private readonly userService: UsersService){}
 
   @Get()
+  @UseInterceptors(ClassSerializerInterceptor)
   //@UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)
   findAll(){

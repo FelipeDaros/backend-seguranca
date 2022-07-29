@@ -1,9 +1,7 @@
 export declare class ServicePoint {
     id: string;
-    latitude: number;
-    longitude: number;
-    latitudeDelta: number;
-    longitudeDelta: number;
+    latitude: string;
+    longitude: string;
     locale: string;
     stats: string;
     qrcode: string;

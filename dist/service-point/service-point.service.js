@@ -29,10 +29,8 @@ let ServicePointService = class ServicePointService {
         console.log(`QRCODE: ` + qrcodeHash);
         return this.servicePointService.save({
             id: uuid_1.v4(),
-            latitude: pointService.latitude,
-            latitudeDelta: pointService.latitudeDelta,
-            longitude: pointService.longitude,
-            longitudeDelta: pointService.longitudeDelta,
+            latitude: String(pointService.latitude),
+            longitude: String(pointService.longitude),
             locale: pointService.locale,
             stats: 'A',
             qrcode: qrcodeHash

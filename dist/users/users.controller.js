@@ -44,6 +44,7 @@ let UsersController = class UsersController {
 };
 __decorate([
     common_1.Get(),
+    common_1.UseInterceptors(common_1.ClassSerializerInterceptor),
     common_1.HttpCode(common_1.HttpStatus.OK),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

@@ -1,8 +1,6 @@
 export declare class CreateServicePointDto {
-    latitude: number;
-    longitude: number;
-    latitudeDelta: number;
-    longitudeDelta: number;
+    latitude: string;
+    longitude: string;
     locale: string;
     stats: string;
     qrcode: string;

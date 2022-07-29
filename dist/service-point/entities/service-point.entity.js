@@ -25,20 +25,12 @@ __decorate([
 ], ServicePoint.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], ServicePoint.prototype, "latitude", void 0);
 __decorate([
     typeorm_1.Column(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], ServicePoint.prototype, "longitude", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Number)
-], ServicePoint.prototype, "latitudeDelta", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Number)
-], ServicePoint.prototype, "longitudeDelta", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)

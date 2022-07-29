@@ -14,7 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServicePointController = void 0;
 const common_1 = require("@nestjs/common");
-const passport_1 = require("@nestjs/passport");
 const CreateServicePointDto_entity_1 = require("./dto/CreateServicePointDto.entity");
 const service_point_service_1 = require("./service-point.service");
 let ServicePointController = class ServicePointController {
@@ -30,7 +29,6 @@ let ServicePointController = class ServicePointController {
 };
 __decorate([
     common_1.Post(),
-    common_1.UseGuards(passport_1.AuthGuard('jwt')),
     common_1.HttpCode(common_1.HttpStatus.OK),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
@@ -39,7 +37,6 @@ __decorate([
 ], ServicePointController.prototype, "create", null);
 __decorate([
     common_1.Get(),
-    common_1.UseGuards(passport_1.AuthGuard('jwt')),
     common_1.HttpCode(common_1.HttpStatus.OK),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

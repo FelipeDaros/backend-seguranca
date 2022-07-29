@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { PointsModule } from './points/points.module';
 import { OcorrenceModule } from './ocorrence/ocorrence.module';
 import { ServicePointModule } from './service-point/service-point.module';
 
@@ -21,7 +20,6 @@ import { ServicePointModule } from './service-point/service-point.module';
     UsersModule,
     AuthModule,
     OcorrenceModule,
-    PointsModule,
     ServicePointModule
   ],
   controllers: [AppController],

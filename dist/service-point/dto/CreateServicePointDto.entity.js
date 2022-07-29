@@ -14,21 +14,13 @@ const class_validator_1 = require("class-validator");
 class CreateServicePointDto {
 }
 __decorate([
-    class_validator_1.IsNumber(),
-    __metadata("design:type", Number)
+    class_validator_1.IsString(),
+    __metadata("design:type", String)
 ], CreateServicePointDto.prototype, "latitude", void 0);
 __decorate([
-    class_validator_1.IsNumber(),
-    __metadata("design:type", Number)
+    class_validator_1.IsString(),
+    __metadata("design:type", String)
 ], CreateServicePointDto.prototype, "longitude", void 0);
-__decorate([
-    class_validator_1.IsNumber(),
-    __metadata("design:type", Number)
-], CreateServicePointDto.prototype, "latitudeDelta", void 0);
-__decorate([
-    class_validator_1.IsNumber(),
-    __metadata("design:type", Number)
-], CreateServicePointDto.prototype, "longitudeDelta", void 0);
 __decorate([
     class_validator_1.IsString(),
     __metadata("design:type", String)

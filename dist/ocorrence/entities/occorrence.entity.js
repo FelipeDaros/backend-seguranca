@@ -17,6 +17,7 @@ let Occurrence = class Occurrence {
     constructor() {
         if (!this.id) {
             this.id = uuid_1.v4();
+            this.situation = 'aberto';
         }
     }
 };
@@ -31,12 +32,20 @@ __decorate([
 __decorate([
     typeorm_1.OneToOne(() => user_entity_1.Users),
     typeorm_1.JoinTable(),
-    __metadata("design:type", user_entity_1.Users)
+    __metadata("design:type", String)
 ], Occurrence.prototype, "user_id", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
 ], Occurrence.prototype, "place", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Occurrence.prototype, "type", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Occurrence.prototype, "situation", void 0);
 __decorate([
     typeorm_1.CreateDateColumn(),
     __metadata("design:type", Date)

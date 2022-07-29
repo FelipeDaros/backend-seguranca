@@ -21,6 +21,23 @@ let OcorrenceService = class OcorrenceService {
     constructor(occurrenceRepository) {
         this.occurrenceRepository = occurrenceRepository;
     }
+    async findAll() {
+        return await this.occurrenceRepository.find();
+    }
+    async update(id, updateOccorrenceDto) {
+        const findOccorrence = await this.occurrenceRepository.findOne(id);
+        if (!findOccorrence) {
+            throw new common_1.HttpException({
+                status: common_1.HttpStatus.NOT_FOUND,
+                error: 'Usuário não encontrado'
+            }, common_1.HttpStatus.NOT_FOUND);
+        }
+        return this.occurrenceRepository.update(id, updateOccorrenceDto);
+    }
+    async create(createOccorrenceDto) {
+        const occurrence = this.occurrenceRepository.create(createOccorrenceDto);
+        return this.occurrenceRepository.save(occurrence);
+    }
 };
 OcorrenceService = __decorate([
     common_1.Injectable(),

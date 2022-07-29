@@ -13,7 +13,6 @@ const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const users_module_1 = require("./users/users.module");
 const auth_module_1 = require("./auth/auth.module");
-const points_module_1 = require("./points/points.module");
 const ocorrence_module_1 = require("./ocorrence/ocorrence.module");
 const service_point_module_1 = require("./service-point/service-point.module");
 let AppModule = class AppModule {
@@ -32,7 +31,6 @@ AppModule = __decorate([
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
             ocorrence_module_1.OcorrenceModule,
-            points_module_1.PointsModule,
             service_point_module_1.ServicePointModule
         ],
         controllers: [app_controller_1.AppController],

@@ -3,7 +3,8 @@ export declare class Users {
     name: string;
     password: string;
     email: string;
-    contato: string;
+    contact: string;
     cpf: string;
+    situation: string;
     constructor();
 }

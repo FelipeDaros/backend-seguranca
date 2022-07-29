@@ -28,10 +28,14 @@ __decorate([
 __decorate([
     class_validator_1.IsString(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "contato", void 0);
+], CreateUserDto.prototype, "contact", void 0);
 __decorate([
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "cpf", void 0);
+__decorate([
+    class_validator_1.IsString(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "situation", void 0);
 exports.CreateUserDto = CreateUserDto;
 //# sourceMappingURL=create-user.dto.js.map

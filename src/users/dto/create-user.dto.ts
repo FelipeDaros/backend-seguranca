@@ -12,8 +12,11 @@ export class CreateUserDto{
   readonly email: string;
 
   @IsString()
-  readonly contato: string;
+  readonly contact: string;
 
   @IsString()
   readonly cpf: string;
+
+  @IsString()
+  readonly situation: string;
 }

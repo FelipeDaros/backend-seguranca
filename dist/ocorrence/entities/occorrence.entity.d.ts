@@ -5,6 +5,7 @@ export declare class Occurrence {
     place: string;
     type: string;
     situation: string;
+    photo: string;
     date_occurrence: Date;
     current_time: Date;
     constructor();

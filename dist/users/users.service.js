@@ -73,7 +73,8 @@ let UsersService = class UsersService {
             cpf: createUserDto.cpf,
             email: createUserDto.email,
             password: passwordHash,
-            contato: createUserDto.contato
+            contact: createUserDto.contact,
+            situation: 'A'
         });
         return this.userRepository.save(user);
     }

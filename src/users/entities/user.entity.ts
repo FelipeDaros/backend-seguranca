@@ -18,10 +18,13 @@ export class Users{
   email: string;
 
   @Column({length: 12})
-  contato: string;
+  contact: string;
 
   @Column({length: 15})
   cpf: string;
+
+  @Column({length: 1})
+  situation: string;
 
   constructor(){
     if(!this.id){

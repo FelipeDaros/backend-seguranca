@@ -40,11 +40,15 @@ __decorate([
 __decorate([
     typeorm_1.Column({ length: 12 }),
     __metadata("design:type", String)
-], Users.prototype, "contato", void 0);
+], Users.prototype, "contact", void 0);
 __decorate([
     typeorm_1.Column({ length: 15 }),
     __metadata("design:type", String)
 ], Users.prototype, "cpf", void 0);
+__decorate([
+    typeorm_1.Column({ length: 1 }),
+    __metadata("design:type", String)
+], Users.prototype, "situation", void 0);
 Users = __decorate([
     typeorm_1.Entity('users'),
     __metadata("design:paramtypes", [])

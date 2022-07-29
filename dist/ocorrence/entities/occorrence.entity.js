@@ -47,6 +47,10 @@ __decorate([
     __metadata("design:type", String)
 ], Occurrence.prototype, "situation", void 0);
 __decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Occurrence.prototype, "photo", void 0);
+__decorate([
     typeorm_1.CreateDateColumn(),
     __metadata("design:type", Date)
 ], Occurrence.prototype, "date_occurrence", void 0);

@@ -1,18 +1,18 @@
-import { IsEmpty, IsNumber, IsString } from "class-validator";
+import { IsEmpty, IsDecimal, IsString } from "class-validator";
 
 
 export class CreateServicePointDto{
 
-  @IsNumber()
+  @IsDecimal()
   latitude: number;
 
-  @IsNumber()
+  @IsDecimal()
   longitude: number;
 
-  @IsNumber()
+  @IsDecimal()
   latitudeDelta: number;
 
-  @IsNumber()
+  @IsDecimal()
   longitudeDelta: number;
 
   @IsString()

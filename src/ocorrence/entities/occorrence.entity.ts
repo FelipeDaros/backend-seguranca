@@ -26,11 +26,11 @@ export class Occurrence{
   @Column()
   photo: string;
 
-  @Column()
-  date_occurrence: string;
+  @CreateDateColumn()
+  date_occurrence: Date;
 
-  @Column()
-  current_time: string;
+  @CreateDateColumn()
+  current_time: Date;
 
   constructor(){
     if(!this.id){

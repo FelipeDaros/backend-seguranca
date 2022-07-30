@@ -20,9 +20,9 @@ export class CreateOccorrenceDto{
   @IsString()
   photo: string;
 
-  @IsDate()
-  date_occurrence: string;
+  @IsString()
+  date_occurrence: Date;
 
-  @IsDate()
-  current_time: string;
+  @IsString()
+  current_time: Date;
 }

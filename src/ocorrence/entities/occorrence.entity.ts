@@ -26,10 +26,10 @@ export class Occurrence{
   @Column()
   photo: string;
 
-  @CreateDateColumn()
+  @Column()
   date_occurrence: string;
 
-  @CreateDateColumn()
+  @Column()
   current_time: string;
 
   constructor(){

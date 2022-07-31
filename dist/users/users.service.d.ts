@@ -14,6 +14,7 @@ export declare class UsersService {
     create(createUserDto: CreateUserDto): Promise<Users>;
     delete(id: string): Promise<Users>;
     signin(signinDto: SigninDto): Promise<{
+        id: string;
         name: string;
         jwtToken: string;
         email: string;

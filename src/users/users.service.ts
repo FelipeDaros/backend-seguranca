@@ -30,7 +30,13 @@ export class UsersService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto){
-    const findUser = await this.findOne(id);
+    const findUser = await this.userRepository.findOne({
+      where: {
+        id
+      }
+    });
+
+    console.log(findUser)
 
     if(!findUser){
       throw new HttpException({
@@ -39,7 +45,7 @@ export class UsersService {
       }, HttpStatus.BAD_REQUEST)
     }
 
-    return this.userRepository.update(id, updateUserDto);
+    return this.userRepository.update(findUser, updateUserDto);
   }
 
   async create(createUserDto: CreateUserDto){
@@ -123,6 +129,5 @@ export class UsersService {
     }
     return match;
   }
-
 
 }

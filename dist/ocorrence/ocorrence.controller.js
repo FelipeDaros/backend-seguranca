@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OcorrenceController = void 0;
 const common_1 = require("@nestjs/common");
+const passport_1 = require("@nestjs/passport");
 const create_occorrence_dto_1 = require("./dto/create-occorrence.dto");
 const update_occorrence_dto_1 = require("./dto/update-occorrence.dto");
 const ocorrence_service_1 = require("./ocorrence.service");
@@ -34,6 +35,7 @@ let OcorrenceController = class OcorrenceController {
 __decorate([
     common_1.Post(),
     common_1.HttpCode(common_1.HttpStatus.CREATED),
+    common_1.UseGuards(passport_1.AuthGuard('jwt')),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_occorrence_dto_1.CreateOccorrenceDto]),
@@ -42,6 +44,7 @@ __decorate([
 __decorate([
     common_1.Get(),
     common_1.HttpCode(common_1.HttpStatus.OK),
+    common_1.UseGuards(passport_1.AuthGuard('jwt')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

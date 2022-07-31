@@ -35,14 +35,19 @@ let UsersService = class UsersService {
         });
     }
     async update(id, updateUserDto) {
-        const findUser = await this.findOne(id);
+        const findUser = await this.userRepository.findOne({
+            where: {
+                id
+            }
+        });
+        console.log(findUser);
         if (!findUser) {
             throw new common_1.HttpException({
                 status: common_1.HttpStatus.BAD_REQUEST,
                 error: 'Usuário não encontrado'
             }, common_1.HttpStatus.BAD_REQUEST);
         }
-        return this.userRepository.update(id, updateUserDto);
+        return this.userRepository.update(findUser, updateUserDto);
     }
     async create(createUserDto) {
         const emailExists = await this.userRepository.findOne({
@@ -99,7 +104,7 @@ let UsersService = class UsersService {
             throw new common_1.NotFoundException('Invalid credentials.');
         }
         const jwtToken = await this.authService.createAccessToken(user.id);
-        return { name: user.name, jwtToken, email: user.email };
+        return { id: user.id, name: user.name, jwtToken, email: user.email };
     }
     async checkPassword(password, user) {
         const match = await bcrypt.compare(password, user.password);

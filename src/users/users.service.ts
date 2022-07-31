@@ -98,7 +98,7 @@ export class UsersService {
 
   async signin(
     signinDto: SigninDto
-  ): Promise<{name: string, jwtToken: string, email: string}>{
+  ): Promise<{id: string, name: string, jwtToken: string, email: string}>{
     const user = await this.userRepository.findOne({
       where: {
         email: signinDto.email
@@ -113,7 +113,7 @@ export class UsersService {
 
     const jwtToken = await this.authService.createAccessToken(user.id);
 
-    return {name: user.name, jwtToken, email: user.email};
+    return {id: user.id, name: user.name, jwtToken, email: user.email};
   }
 
   private async checkPassword(password: string, user: Users): Promise<boolean> {
@@ -123,4 +123,6 @@ export class UsersService {
     }
     return match;
   }
+
+
 }

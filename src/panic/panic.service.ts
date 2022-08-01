@@ -20,7 +20,12 @@ export class PanicService {
 
   async create(createPanicDto: CreatePanicDto): Promise<Panic>{
     console.log(createPanicDto)
-    const panic = this.panicService.create(createPanicDto);
+    const panic = this.panicService.create({
+      id: uuid(),
+      user_id: createPanicDto.user_id,
+      date: createPanicDto.date,
+      stats: createPanicDto.stats
+    });
 
     return this.panicService.save(panic);
   }

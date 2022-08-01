@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { OcorrenceModule } from './ocorrence/ocorrence.module';
 import { ServicePointModule } from './service-point/service-point.module';
+import { PanicModule } from './panic/panic.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { ServicePointModule } from './service-point/service-point.module';
     UsersModule,
     AuthModule,
     OcorrenceModule,
-    ServicePointModule
+    ServicePointModule,
+    PanicModule,
   ],
   controllers: [AppController],
   providers: [AppService]

@@ -17,6 +17,7 @@ let Users = class Users {
     constructor() {
         if (!this.id) {
             this.id = uuid_1.v4();
+            this.isAdmin = false;
         }
     }
 };
@@ -49,6 +50,10 @@ __decorate([
     typeorm_1.Column({ length: 1 }),
     __metadata("design:type", String)
 ], Users.prototype, "situation", void 0);
+__decorate([
+    typeorm_1.Column({ default: false }),
+    __metadata("design:type", Boolean)
+], Users.prototype, "isAdmin", void 0);
 Users = __decorate([
     typeorm_1.Entity('users'),
     __metadata("design:paramtypes", [])

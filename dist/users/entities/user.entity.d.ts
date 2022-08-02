@@ -6,5 +6,6 @@ export declare class Users {
     contact: string;
     cpf: string;
     situation: string;
+    isAdmin: boolean;
     constructor();
 }

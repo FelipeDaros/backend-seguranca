@@ -26,9 +26,13 @@ export class Users{
   @Column({length: 1})
   situation: string;
 
+  @Column({default: false})
+  isAdmin: boolean;
+
   constructor(){
     if(!this.id){
       this.id = uuid();
+      this.isAdmin = false;
     }
 
     

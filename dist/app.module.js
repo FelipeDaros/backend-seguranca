@@ -17,6 +17,7 @@ const ocorrence_module_1 = require("./ocorrence/ocorrence.module");
 const service_point_module_1 = require("./service-point/service-point.module");
 const panic_module_1 = require("./panic/panic.module");
 const location_module_1 = require("./location/location.module");
+const round_module_1 = require("./round/round.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -36,6 +37,7 @@ AppModule = __decorate([
             service_point_module_1.ServicePointModule,
             panic_module_1.PanicModule,
             location_module_1.LocationModule,
+            round_module_1.RoundModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]

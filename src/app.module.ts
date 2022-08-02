@@ -8,6 +8,8 @@ import { OcorrenceModule } from './ocorrence/ocorrence.module';
 import { ServicePointModule } from './service-point/service-point.module';
 import { PanicModule } from './panic/panic.module';
 import { LocationModule } from './location/location.module';
+import { RoundController } from './round/round.controller';
+import { RoundModule } from './round/round.module';
 
 @Module({
   imports: [
@@ -25,6 +27,7 @@ import { LocationModule } from './location/location.module';
     ServicePointModule,
     PanicModule,
     LocationModule,
+    RoundModule,
   ],
   controllers: [AppController],
   providers: [AppService]

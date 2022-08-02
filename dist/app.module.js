@@ -16,6 +16,7 @@ const auth_module_1 = require("./auth/auth.module");
 const ocorrence_module_1 = require("./ocorrence/ocorrence.module");
 const service_point_module_1 = require("./service-point/service-point.module");
 const panic_module_1 = require("./panic/panic.module");
+const location_module_1 = require("./location/location.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -34,6 +35,7 @@ AppModule = __decorate([
             ocorrence_module_1.OcorrenceModule,
             service_point_module_1.ServicePointModule,
             panic_module_1.PanicModule,
+            location_module_1.LocationModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]

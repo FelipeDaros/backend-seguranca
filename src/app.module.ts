@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { OcorrenceModule } from './ocorrence/ocorrence.module';
 import { ServicePointModule } from './service-point/service-point.module';
 import { PanicModule } from './panic/panic.module';
+import { LocationModule } from './location/location.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { PanicModule } from './panic/panic.module';
     OcorrenceModule,
     ServicePointModule,
     PanicModule,
+    LocationModule,
   ],
   controllers: [AppController],
   providers: [AppService]

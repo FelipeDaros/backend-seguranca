@@ -111,7 +111,7 @@ export class UsersService {
         email: signinDto.email
       }
     })
-
+    console.log('RODA');
     const match = await this.checkPassword(signinDto.password, user);
 
     if (!match) {

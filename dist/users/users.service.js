@@ -104,7 +104,7 @@ let UsersService = class UsersService {
             throw new common_1.NotFoundException('Invalid credentials.');
         }
         const jwtToken = await this.authService.createAccessToken(user.id);
-        return { id: user.id, name: user.name, jwtToken, email: user.email };
+        return { id: user.id, name: user.name, jwtToken, email: user.email, isAdmin: user.isAdmin };
     }
     async checkPassword(password, user) {
         const match = await bcrypt.compare(password, user.password);

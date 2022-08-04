@@ -17,7 +17,4 @@ export class CreateUserDto{
 
   @IsString()
   readonly cpf: string;
-
-  @IsString()
-  readonly situation: string;
 }

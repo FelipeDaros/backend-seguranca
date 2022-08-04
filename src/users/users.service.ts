@@ -83,8 +83,7 @@ export class UsersService {
       cpf: createUserDto.cpf,
       email: createUserDto.email,
       password: passwordHash,
-      contact: createUserDto.contact,
-      situation: 'A'
+      contact: createUserDto.contact
     });
     
     return this.userRepository.save(user);

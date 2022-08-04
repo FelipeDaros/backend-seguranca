@@ -5,5 +5,5 @@ export class signinReturnDto{
   name: string; 
   jwtToken: string; 
   email: string; 
-  isAdmin: boolean;
+  isAdmin: number;
 }

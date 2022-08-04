@@ -5,6 +5,7 @@ import e from 'express';
 import { AuthService } from 'src/auth/auth.service';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
+import { signinReturnDto } from './dto/sigininReturn.dto';
 import { SigninDto } from './dto/signin.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Users } from './entities/user.entity';
@@ -104,7 +105,7 @@ export class UsersService {
 
   async signin(
     signinDto: SigninDto
-  ): Promise<{id: string, name: string, jwtToken: string, email: string}>{
+  ): Promise<signinReturnDto>{
     const user = await this.userRepository.findOne({
       where: {
         email: signinDto.email
@@ -119,7 +120,7 @@ export class UsersService {
 
     const jwtToken = await this.authService.createAccessToken(user.id);
 
-    return {id: user.id, name: user.name, jwtToken, email: user.email};
+    return {id: user.id, name: user.name, jwtToken, email: user.email, isAdmin: user.isAdmin};
   }
 
   private async checkPassword(password: string, user: Users): Promise<boolean> {

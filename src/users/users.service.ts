@@ -8,6 +8,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { signinReturnDto } from './dto/sigininReturn.dto';
 import { SigninDto } from './dto/signin.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateStatsUserDto } from './dto/updateStatsUser.dto';
 import { Users } from './entities/user.entity';
 
 @Injectable()
@@ -28,6 +29,24 @@ export class UsersService {
         id: id
       }
     })
+  }
+
+  async updateStatsUser(id: string, updateStatsUser: UpdateStatsUserDto){
+    const findUser = await this.userRepository.findOne({
+      where: {
+        id: id
+      }
+    })
+
+    console.log(findUser)
+    if(!findUser){
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: 'Usuário não encontrado'
+      }, HttpStatus.BAD_REQUEST)
+    }
+
+    return this.userRepository.update(id, updateStatsUser);
   }
 
   async update(id: string, updateUserDto: UpdateUserDto){

@@ -3,6 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { CreateUserDto } from './dto/create-user.dto';
 import { SigninDto } from './dto/signin.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateStatsUserDto } from './dto/updateStatsUser.dto';
 import { UsersService } from './users.service';
 
 
@@ -51,6 +52,13 @@ export class UsersController {
     @Body() signinDto: SigninDto
   ): Promise<{name: string, jwtToken: string, email: string}>{
     return this.userService.signin(signinDto);
+  }
+
+  @Patch()
+  @UseGuards(AuthGuard('jwt'))
+  @HttpCode(HttpStatus.OK)
+  updateStatsUser(@Body() id:string, updateStatsUserDto:UpdateStatsUserDto){
+    return this.userService.updateStatsUser(id, updateStatsUserDto);
   }
 
 }

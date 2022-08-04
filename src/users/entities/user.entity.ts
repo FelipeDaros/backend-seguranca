@@ -23,6 +23,9 @@ export class Users{
   @Column({length: 15})
   cpf: string;
 
+  @Column({length: 1, default: 'I'})
+  stats: string;
+
   @Column({default: 0})
   isAdmin: number;
 

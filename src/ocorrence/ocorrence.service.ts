@@ -17,6 +17,7 @@ export class OcorrenceService {
   }
 
   public async update(id: string, updateOccorrenceDto: UpdateOccorrenceDto){
+    console.log("UPDATE")
     const findOccorrence = await this.occurrenceRepository.findOne(id);
 
     if(!findOccorrence){
@@ -30,6 +31,7 @@ export class OcorrenceService {
   }
 
   public async create(createOccorrenceDto: CreateOccorrenceDto): Promise<Occurrence>{
+    console.log("CREATED")
     const occurrence = this.occurrenceRepository.create(createOccorrenceDto);
 
     return this.occurrenceRepository.save(occurrence);

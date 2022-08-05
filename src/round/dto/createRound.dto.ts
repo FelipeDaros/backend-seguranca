@@ -11,5 +11,5 @@ export class CreateRoundDto{
   readonly point_id: ServicePoint;
 
   @IsString()
-  readonly data: string;
+  readonly data: Date;
 }

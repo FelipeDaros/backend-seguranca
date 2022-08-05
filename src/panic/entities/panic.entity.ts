@@ -11,9 +11,9 @@ export class Panic{
   @JoinColumn({name: 'user_id', referencedColumnName: 'id'})
   user_id: Users;
 
-  @Column({default: 'ATIVO', nullable: true})
-  stats: string;
-
+  @Column({default: 0, nullable: true})
+  stats: number;
+ 
   @Column()
-  date: string;
+  date: Date;
 }

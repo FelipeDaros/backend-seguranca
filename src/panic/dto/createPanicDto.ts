@@ -7,8 +7,8 @@ export class CreatePanicDto{
   readonly user_id?: Users;
   
   @IsString()
-  readonly stats?: string;
+  readonly stats?: number;
 
   @IsString()
-  readonly date?: string;
+  readonly date?: Date;
 }

@@ -18,15 +18,15 @@ export class Round{
   user_id: Users;
 
   @Column()
-  data: string;
+  data: Date;
 
   @Column()
-  stats: boolean;
+  stats: number;
   
   constructor(){
     if(!this.id){
       this.id = uuid();
-      this.stats = true;
+      this.stats = 1;
     }
   }
 }

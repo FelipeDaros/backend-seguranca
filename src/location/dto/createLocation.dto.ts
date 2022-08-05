@@ -14,5 +14,5 @@ export class CreateLocationDto{
   user_id: Users;
 
   @IsString()
-  date: string;
+  date: Date;
 }

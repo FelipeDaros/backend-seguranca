@@ -1,4 +1,5 @@
 import { IsDate, IsString } from "class-validator";
+import { Users } from "src/users/entities/user.entity";
 
 
 export class CreateOccorrenceDto{
@@ -6,7 +7,7 @@ export class CreateOccorrenceDto{
   resume: string;
 
   @IsString()
-  user_id: string;
+  user_id: Users;
 
   @IsString()
   place: string;
@@ -15,7 +16,7 @@ export class CreateOccorrenceDto{
   type: string;
 
   @IsString()
-  situation: string;
+  stats: number;
 
   @IsString()
   photo: string;

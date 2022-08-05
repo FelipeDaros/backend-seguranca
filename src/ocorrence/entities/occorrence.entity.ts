@@ -1,5 +1,5 @@
 import { Users } from "src/users/entities/user.entity";
-import { Column, CreateDateColumn, Entity, JoinTable, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuid} from 'uuid';
 
 @Entity('occurrence')
@@ -10,9 +10,9 @@ export class Occurrence{
   @Column()
   resume: string;
 
-  @OneToOne(() => Users)
-  @JoinTable()
-  user_id: string;
+  @ManyToOne(type => Users, {eager: true})
+  @JoinColumn({name: 'user_id', referencedColumnName: 'id'})
+  user_id: Users;
 
   @Column()
   place: string;
@@ -21,21 +21,21 @@ export class Occurrence{
   type: string;
 
   @Column()
-  situation: string;
+  stats: number;
 
   @Column()
   photo: string;
 
-  @CreateDateColumn()
+  @Column()
   date_occurrence: Date;
 
-  @CreateDateColumn()
+  @Column()
   current_time: Date;
 
   constructor(){
     if(!this.id){
       this.id = uuid();
-      this.situation = 'aberto'
+      this.stats = 1;
     }
   }
 }

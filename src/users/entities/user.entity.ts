@@ -23,16 +23,16 @@ export class Users{
   @Column({length: 15})
   cpf: string;
 
-  @Column({length: 1})
-  situation: string;
+  @Column({length: 1, default: 'I'})
+  stats: string;
 
-  @Column({default: false})
-  isAdmin: boolean;
+  @Column({default: 0})
+  isAdmin: number;
 
   constructor(){
     if(!this.id){
       this.id = uuid();
-      this.isAdmin = false;
+      this.isAdmin = 0;
     }
 
     

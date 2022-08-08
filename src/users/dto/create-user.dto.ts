@@ -2,8 +2,6 @@ import { IsEmpty, IsString } from "class-validator";
 
 
 export class CreateUserDto{
-  @IsString()
-  readonly id?: string;
 
   @IsString()
   readonly name: string;
@@ -19,7 +17,4 @@ export class CreateUserDto{
 
   @IsString()
   readonly cpf: string;
-
-  @IsString()
-  readonly situation: string;
 }

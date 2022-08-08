@@ -1,4 +1,4 @@
-import { IsEmpty, IsString } from "class-validator";
+import { IsEmpty, IsNumber, IsString } from "class-validator";
 import { Users } from "src/users/entities/user.entity";
 
 export class CreatePanicDto{
@@ -6,9 +6,9 @@ export class CreatePanicDto{
   @IsString()
   readonly user_id?: Users;
   
-  @IsString()
-  readonly stats?: string;
+  @IsNumber()
+  readonly stats?: number;
 
   @IsString()
-  readonly date?: string;
+  readonly date?: Date;
 }

@@ -18,7 +18,7 @@ export class Location{
   user_id: Users;
 
   @Column()
-  date: string;
+  date: Date;
 
   constructor(){
     if(!this.id){

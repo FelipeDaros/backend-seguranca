@@ -5,8 +5,10 @@ import e from 'express';
 import { AuthService } from 'src/auth/auth.service';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
+import { signinReturnDto } from './dto/sigininReturn.dto';
 import { SigninDto } from './dto/signin.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateStatsUserDto } from './dto/updateStatsUser.dto';
 import { Users } from './entities/user.entity';
 
 @Injectable()
@@ -27,6 +29,22 @@ export class UsersService {
         id: id
       }
     })
+  }
+
+  async updateStatsUser(id: string, updateStatsUser: UpdateStatsUserDto){
+    const findUser = await this.userRepository.findOne({
+      where: {
+        id: id
+      }
+    })
+    if(!findUser){
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: 'Usuário não encontrado'
+      }, HttpStatus.BAD_REQUEST)
+    }
+
+    return this.userRepository.update(id, updateStatsUser);
   }
 
   async update(id: string, updateUserDto: UpdateUserDto){
@@ -82,8 +100,7 @@ export class UsersService {
       cpf: createUserDto.cpf,
       email: createUserDto.email,
       password: passwordHash,
-      contact: createUserDto.contact,
-      situation: 'A'
+      contact: createUserDto.contact
     });
     
     return this.userRepository.save(user);
@@ -104,13 +121,13 @@ export class UsersService {
 
   async signin(
     signinDto: SigninDto
-  ): Promise<{id: string, name: string, jwtToken: string, email: string}>{
+  ): Promise<signinReturnDto>{
     const user = await this.userRepository.findOne({
       where: {
         email: signinDto.email
       }
     })
-
+    console.log('RODA');
     const match = await this.checkPassword(signinDto.password, user);
 
     if (!match) {
@@ -119,7 +136,7 @@ export class UsersService {
 
     const jwtToken = await this.authService.createAccessToken(user.id);
 
-    return {id: user.id, name: user.name, jwtToken, email: user.email};
+    return {id: user.id, name: user.name, jwtToken, email: user.email, isAdmin: user.isAdmin};
   }
 
   private async checkPassword(password: string, user: Users): Promise<boolean> {

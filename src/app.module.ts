@@ -10,6 +10,8 @@ import { PanicModule } from './panic/panic.module';
 import { LocationModule } from './location/location.module';
 import { RoundController } from './round/round.controller';
 import { RoundModule } from './round/round.module';
+import { PostModule } from './post/post.module';
+import { ServiceDayModule } from './service-day/service-day.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { RoundModule } from './round/round.module';
     PanicModule,
     LocationModule,
     RoundModule,
+    PostModule,
+    ServiceDayModule
   ],
   controllers: [AppController],
   providers: [AppService]

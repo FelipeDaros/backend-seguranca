@@ -37,8 +37,6 @@ export class UsersService {
         id: id
       }
     })
-
-    console.log(findUser)
     if(!findUser){
       throw new HttpException({
         status: HttpStatus.BAD_REQUEST,

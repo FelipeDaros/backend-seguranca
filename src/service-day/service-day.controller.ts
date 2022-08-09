@@ -24,6 +24,13 @@ export class ServiceDayController {
     return this.serviceDayService.findAll();
   }
 
+  @Get('/itens')
+  @UseGuards(AuthGuard('jwt'))
+  @HttpCode(HttpStatus.OK)
+  public listAllItens(){
+    return this.serviceDayService.listAllItens();
+  }
+
   @Get('/latest')
   @UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)

@@ -36,6 +36,15 @@ export class ServiceDayService {
     });
   }
 
+  public async findAllLatest(): Promise<ServiceDay>{
+    return await this.serviceDayRepository.findOne({
+      relations: ['itens'],
+      order: {
+        created_at: 'DESC'
+      }
+    });
+  }
+
 
   private async preloadNameIten(name: string): Promise<Itens>{
     const iten = await this.itensRepository.findOne({where: {name}});

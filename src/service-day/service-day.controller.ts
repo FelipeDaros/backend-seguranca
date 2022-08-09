@@ -23,4 +23,11 @@ export class ServiceDayController {
   public findAll(){
     return this.serviceDayService.findAll();
   }
+
+  @Get('/latest')
+  @UseGuards(AuthGuard('jwt'))
+  @HttpCode(HttpStatus.OK)
+  public findAllLatest(){
+    return this.serviceDayService.findAllLatest();
+  }
 }

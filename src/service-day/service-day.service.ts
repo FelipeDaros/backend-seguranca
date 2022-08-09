@@ -46,6 +46,10 @@ export class ServiceDayService {
   }
 
 
+  public async listAllItens(): Promise<Itens[]>{
+    return await this.itensRepository.find()
+  }
+
   private async preloadNameIten(name: string): Promise<Itens>{
     const iten = await this.itensRepository.findOne({where: {name}});
 

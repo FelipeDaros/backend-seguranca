@@ -19,7 +19,7 @@ export class OcorrenceController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   async findAll(){
     return this.occorrenceService.findAll();
   }

@@ -17,7 +17,7 @@ export class ServicePointController {
   }
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)
   public async findAll(){
     return this.servicePointService.findAll();

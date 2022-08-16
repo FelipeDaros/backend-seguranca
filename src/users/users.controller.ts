@@ -20,7 +20,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)  
   @UseInterceptors(ClassSerializerInterceptor)
   findOne(@Param('id') id:string){

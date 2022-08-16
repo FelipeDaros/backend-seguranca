@@ -18,21 +18,21 @@ export class ServiceDayController {
   }
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)
   public findAll(){
     return this.serviceDayService.findAll();
   }
 
   @Get('/itens')
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)
   public listAllItens(){
     return this.serviceDayService.listAllItens();
   }
 
   @Get('/latest')
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)
   public findAllLatest(){
     return this.serviceDayService.findAllLatest();

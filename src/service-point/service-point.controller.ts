@@ -10,7 +10,7 @@ export class ServicePointController {
   ){}
 
   @Post()
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)
   public async create(@Body() createServicePointDto: CreateServicePointDto){
     return this.servicePointService.create(createServicePointDto);

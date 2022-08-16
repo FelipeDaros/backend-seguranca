@@ -8,7 +8,6 @@ import { PanicService } from './panic.service';
 export class PanicController {
   constructor(private readonly panicService: PanicService){}
   @Get()
-  @UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)
   findAll(){
     return this.panicService.findAll();

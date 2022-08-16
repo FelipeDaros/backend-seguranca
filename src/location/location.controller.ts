@@ -10,7 +10,6 @@ export class LocationController {
   ){}
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK) 
   findAll(){
     return this.locationService.findAll();

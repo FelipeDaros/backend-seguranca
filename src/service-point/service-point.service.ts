@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateServicePointDto } from './dto/CreateServicePointDto.entity';
+import { CreateServicePointDto } from './dto/CreateServicePointDto';
 import { ServicePoint } from './entities/service-point.entity';
 import { toString as qr} from 'qrcode';
 import { v4 as uuid } from 'uuid';

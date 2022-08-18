@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { CreateServicePointDto } from './dto/CreateServicePointDto.entity';
+import { CreateServicePointDto } from './dto/CreateServicePointDto';
 import { ServicePointService } from './service-point.service';
 
 @Controller('service-point')
@@ -10,7 +10,7 @@ export class ServicePointController {
   ){}
 
   @Post()
-  //@UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.OK)
   public async create(@Body() createServicePointDto: CreateServicePointDto){
     return this.servicePointService.create(createServicePointDto);

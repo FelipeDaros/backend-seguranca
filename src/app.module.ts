@@ -12,12 +12,13 @@ import { RoundController } from './round/round.controller';
 import { RoundModule } from './round/round.module';
 import { PostModule } from './post/post.module';
 import { ServiceDayModule } from './service-day/service-day.module';
+import { CompanyModule } from './company/company.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: 'postgres://puenlhol:UbJXkq9NgFGKrr_iTeAiI-SnRw5vgWBk@fanny.db.elephantsql.com/puenlhol',
+      url: 'postgres://fbgqqust:l_uPcK7QN0O5MLSUg6RzfJYOhJUtAheJ@motty.db.elephantsql.com/fbgqqust',
       entities: [__dirname + '/**/*.entity.js'],
       logging: true,
       synchronize: true,
@@ -31,7 +32,8 @@ import { ServiceDayModule } from './service-day/service-day.module';
     LocationModule,
     RoundModule,
     PostModule,
-    ServiceDayModule
+    ServiceDayModule,
+    CompanyModule
   ],
   controllers: [AppController],
   providers: [AppService]

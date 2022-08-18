@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from 'src/auth/auth.module';
-import { Itens } from 'src/service-day/entities/itens.entity';
+import { Company } from 'src/company/entities/company.entity';
+import { ServicePoint } from 'src/service-point/entities/service-point.entity';
 import { Post } from './entities/post.entity';
 import { PostController } from './post.controller';
 import { PostService } from './post.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Post, Itens])],
+  imports: [TypeOrmModule.forFeature([Post, Company, ServicePoint])],
   controllers: [PostController],
   providers: [PostService]
 })

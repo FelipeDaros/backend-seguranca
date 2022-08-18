@@ -1,5 +1,6 @@
 import { Exclude } from "class-transformer";
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Company } from "src/company/entities/company.entity";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid';
 
 @Entity('users')
@@ -28,6 +29,10 @@ export class Users{
 
   @Column({default: 0})
   isAdmin: number;
+
+  @ManyToOne(type => Company, {eager: true})
+  @JoinColumn({name: 'company', referencedColumnName: 'id'})
+  company: Company;
 
   constructor(){
     if(!this.id){

@@ -26,7 +26,8 @@ export class ServicePointService {
       longitude: String(pointService.longitude),
       locale: pointService.locale,
       stats: 'A',
-      qrcode: qrcodeHash
+      qrcode: qrcodeHash,
+      company_id: pointService.company_id
     })
   }
 

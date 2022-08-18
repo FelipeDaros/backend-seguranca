@@ -1,4 +1,5 @@
 import { IsEmpty, IsString} from "class-validator";
+import { Company } from "src/company/entities/company.entity";
 
 
 export class CreateServicePointDto{
@@ -17,5 +18,8 @@ export class CreateServicePointDto{
 
   @IsEmpty()
   qrcode: string;
+   
+  @IsString()
+  company_id: Company;
 } 
 

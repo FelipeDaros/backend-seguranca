@@ -1,9 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Round } from 'src/round/entities/round.entity';
-import { Itens } from 'src/service-day/entities/itens.entity';
+import { Itens } from 'src/post/entities/itens.entity';
 import { ServicePoint } from 'src/service-point/entities/service-point.entity';
-import { FindOperator, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreatePostDto } from './dto/createPost-dto';
 import { Post } from './entities/post.entity';
 
@@ -13,17 +12,37 @@ export class PostService {
   @InjectRepository(Post)
   private readonly postRepository: Repository<Post>,
   @InjectRepository(ServicePoint)
-  private readonly servicePointRepository: Repository<ServicePoint>
+  private readonly servicePointRepository: Repository<ServicePoint>,
+  @InjectRepository(Itens)
+  private readonly itensRepository: Repository<Itens>
  ){}
 
  public async create(createPostDto: CreatePostDto): Promise<Post>{
   const points = await Promise.all(
-    createPostDto.points_post.map((iten) => this.preloadNameIten(iten))
+    createPostDto.points_post.map((iten) => this.preloadLocale(iten))
   );
+
+  const itens = await Promise.all(
+    createPostDto.points_post.map((itens) => this.preloadNameIten(itens))
+  );
+
+  const postAlreadyExists = await this.postRepository.findOne({
+    where:{
+      name: createPostDto.name   
+    }
+  })
+
+  if(postAlreadyExists){
+    throw new HttpException({
+      status: HttpStatus.AMBIGUOUS,
+      error: 'Posto já cadastrado!'
+    }, HttpStatus.AMBIGUOUS)
+  }
 
   const post = this.postRepository.create({
     ...createPostDto,
-    points_post: points
+    points_post: points,
+    itens: itens
   })
 
   return await this.postRepository.save(post);
@@ -40,7 +59,7 @@ export class PostService {
  }
 
 
- private async preloadNameIten(locale: string): Promise<ServicePoint>{
+ private async preloadLocale(locale: string): Promise<ServicePoint>{
   const iten = await this.servicePointRepository.findOne({where: {locale}});
 
   if(iten){
@@ -48,5 +67,15 @@ export class PostService {
   }
 
   return this.servicePointRepository.create({locale});
-}
+  }
+
+  private async preloadNameIten(name: string): Promise<Itens>{
+    const iten = await this.itensRepository.findOne({where: {name}});
+
+    if(iten){
+      return iten;
+    }
+
+    return this.itensRepository.create({name});
+  }
 }

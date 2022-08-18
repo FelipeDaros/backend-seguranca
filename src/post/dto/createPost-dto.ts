@@ -9,6 +9,9 @@ export class CreatePostDto{
   @IsArray()
   readonly points_post: string[];
 
+  @IsArray()
+  readonly itens: string[];
+
   @IsString()
   readonly company_id: Company;
 }

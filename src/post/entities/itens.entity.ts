@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid';
-import { ServiceDay } from "./service-day.entity";
+import { ServiceDay } from "../../service-day/entities/service-day.entity";
+import { Post } from "./post.entity";
 
 
 @Entity('itens')
@@ -14,8 +15,8 @@ export class Itens{
   @Column()
   stats: number; 
 
-  @ManyToMany(() => ServiceDay, (serviceday) => serviceday.itens)
-  serviceday: ServiceDay[]
+  @ManyToMany(() => Post, (post) => post.points_post)
+  post: Post[]
 
   constructor(){
     if(!this.id){

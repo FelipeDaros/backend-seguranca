@@ -1,4 +1,4 @@
-import { Itens } from "src/service-day/entities/itens.entity";
+import { Itens } from "src/post/entities/itens.entity";
 import { Post } from "src/post/entities/post.entity";
 import { Users } from "src/users/entities/user.entity";
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
@@ -12,10 +12,6 @@ export class ServiceDay{
   @ManyToOne(type => Users, {eager: true})
   @JoinColumn({name: 'user_id', referencedColumnName: 'id'})
   user_id: Users;
-
-  @JoinTable({ name: 'serviceday_itens' })
-  @ManyToMany(() => Itens, (itens) => itens.id, {cascade: true})
-  itens: Itens[]
 
   @ManyToOne(type => Post, {eager: true})
   @JoinColumn({name: 'post_id', referencedColumnName: 'id'})

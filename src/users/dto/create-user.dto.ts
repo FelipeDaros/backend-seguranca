@@ -1,5 +1,6 @@
 import { IsEmpty, IsString } from "class-validator";
 import { Company } from "src/company/entities/company.entity";
+import { Post } from "src/post/entities/post.entity";
 
 
 export class CreateUserDto{
@@ -21,4 +22,7 @@ export class CreateUserDto{
 
   @IsString()
   readonly company: Company;
+
+  @IsString()
+  readonly post: Post;
 }

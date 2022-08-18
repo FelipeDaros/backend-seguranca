@@ -23,7 +23,7 @@ export class PostService {
   );
 
   const itens = await Promise.all(
-    createPostDto.points_post.map((itens) => this.preloadNameIten(itens))
+    createPostDto.itens.map((itens) => this.preloadNameIten(itens))
   );
 
   const postAlreadyExists = await this.postRepository.findOne({
@@ -44,6 +44,7 @@ export class PostService {
     points_post: points,
     itens: itens
   })
+  
 
   return await this.postRepository.save(post);
  }

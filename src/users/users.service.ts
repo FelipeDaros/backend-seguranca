@@ -100,7 +100,9 @@ export class UsersService {
       cpf: createUserDto.cpf,
       email: createUserDto.email,
       password: passwordHash,
-      contact: createUserDto.contact
+      contact: createUserDto.contact,
+      post: createUserDto.post,
+      company: createUserDto.company
     });
     
     return this.userRepository.save(user);

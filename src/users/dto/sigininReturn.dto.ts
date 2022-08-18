@@ -1,3 +1,4 @@
+import { Company } from "src/company/entities/company.entity";
 
 
 export class signinReturnDto{
@@ -6,4 +7,5 @@ export class signinReturnDto{
   jwtToken: string; 
   email: string; 
   isAdmin: number;
+  company: Company
 }

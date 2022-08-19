@@ -53,13 +53,6 @@ export class PostService {
   return await this.postRepository.find();
  }
 
- public async findAllItensInGuarita(name: string):Promise<Post | Post[]>{
-  return await this.postRepository.find({
-    where: name
-  })
- }
-
-
  private async preloadLocale(locale: string): Promise<ServicePoint>{
   const iten = await this.servicePointRepository.findOne({where: {locale}});
 
@@ -78,5 +71,9 @@ export class PostService {
     }
 
     return this.itensRepository.create({name});
+  }
+
+  public async listAllItens(): Promise<Itens[]>{
+    return await this.itensRepository.find();
   }
 }

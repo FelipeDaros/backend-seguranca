@@ -23,10 +23,10 @@ export class PostController {
     return this.servicePost.findAll();
   }
 
-  @Get('/itens-guarita')
+  @Get('/itens')
   @HttpCode(HttpStatus.OK)
-  public findAllItensInGuarita(@Body() name: string){
-    return this.servicePost.findAllItensInGuarita(name);
+  public findAllItens(){
+    return this.servicePost.listAllItens();
   }
 
 }

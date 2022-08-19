@@ -13,11 +13,19 @@ export class ServiceDayService {
     private readonly serviceDayRepository: Repository<ServiceDay>,
     @InjectRepository(Users)
     private readonly userRepository: Repository<Users>,
+    @InjectRepository(Itens)
+    private readonly itensRepository: Repository<Itens>
   ){}
 
   public async create(createServiceDayDto: CreateServiceDayDto){
+    const itens = await Promise.all(
+      createServiceDayDto.itens.map((itens) => this.preloadNameIten(itens))
+    );
     
-    const serviceDay = this.serviceDayRepository.create(createServiceDayDto);
+    const serviceDay = this.serviceDayRepository.create({
+      ...createServiceDayDto,
+      itens
+    });
 
     return await this.serviceDayRepository.save(serviceDay);
   }
@@ -28,13 +36,15 @@ export class ServiceDayService {
     });
   }
 
-  public async findAllLatest(): Promise<ServiceDay>{
-    return await this.serviceDayRepository.findOne({
-      relations: ['itens'],
-      order: {
-        created_at: 'DESC'
-      }
-    });
+
+  private async preloadNameIten(name: string): Promise<Itens>{
+    const iten = await this.itensRepository.findOne({where: {name}});
+
+    if(iten){
+      return iten;
+    }
+
+    return this.itensRepository.create({name});
   }
   
 }

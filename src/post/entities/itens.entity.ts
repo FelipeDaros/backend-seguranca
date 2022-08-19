@@ -18,6 +18,9 @@ export class Itens{
   @ManyToMany(() => Post, (post) => post.points_post)
   post: Post[]
 
+  @ManyToMany(() => ServiceDay, (serviceDay) => serviceDay.itens)
+  serviceDay: ServiceDay;
+
   constructor(){
     if(!this.id){
       this.id = uuid();

@@ -46,5 +46,13 @@ export class ServiceDayService {
 
     return this.itensRepository.create({name});
   }
+
+  public async findLatest(): Promise<ServiceDay>{
+    return await this.serviceDayRepository.findOne({
+      order: {
+        created_at: 'DESC'
+      }
+    });
+  }
   
 }

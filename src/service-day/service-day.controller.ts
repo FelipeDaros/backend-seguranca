@@ -24,4 +24,11 @@ export class ServiceDayController {
     return this.serviceDayService.findAll();
   }
 
+
+  @Get('/latest')
+  @HttpCode(HttpStatus.OK)
+  public findLatest(){
+    return this.serviceDayService.findLatest();
+  }
+
 }

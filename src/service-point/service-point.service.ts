@@ -5,25 +5,61 @@ import { CreateServicePointDto } from './dto/CreateServicePointDto';
 import { ServicePoint } from './entities/service-point.entity';
 import { toString as qr} from 'qrcode';
 import { v4 as uuid } from 'uuid';
+import { Post } from 'src/post/entities/post.entity';
 
 @Injectable()
 export class ServicePointService {
   constructor(
     @InjectRepository(ServicePoint)
-    private readonly servicePointService: Repository<ServicePoint>
+    private readonly servicePointService: Repository<ServicePoint>,
+    @InjectRepository(Post)
+    private readonly postService: Repository<Post>
   ){}
 
   public async create(createServicePointDto: CreateServicePointDto): Promise<ServicePoint>{
     const pointService = this.servicePointService.create(createServicePointDto);
+    const post = await this.postService.findOne({
+      where: {
+        company_id: createServicePointDto.company_id
+      }
+    });
+
     const pointAlreadyExists = await this.servicePointService.findOne({
       where: {
         locale: createServicePointDto.locale
       }
     })
-  
+
     const qrcodeHash = await qr(createServicePointDto.locale);
 
-    console.log(`QRCODE: `+qrcodeHash);
+    const pointCreate = {
+      id: uuid(),
+      latitude: String(pointService.latitude),
+      longitude: String(pointService.longitude),
+      locale: pointService.locale,
+      stats: 'A',
+      qrcode: qrcodeHash,
+      company_id: pointService.company_id
+    }
+
+
+    console.log(post);
+    /*if(post.points_post){
+
+      this.postService.update(post.id, {
+        company_id: post.company_id,
+        itens: post.itens,
+        name: post.name,
+        points_post: [
+          ...post.points_post,
+          pointCreate
+        ]     
+      })
+    }*/
+  
+    
+
+    //console.log(`QRCODE: `+qrcodeHash);
 
     if(pointAlreadyExists){
       throw new HttpException({
@@ -32,15 +68,7 @@ export class ServicePointService {
       }, HttpStatus.AMBIGUOUS)
     }
 
-    return this.servicePointService.save({
-      id: uuid(),
-      latitude: String(pointService.latitude),
-      longitude: String(pointService.longitude),
-      locale: pointService.locale,
-      stats: 'A',
-      qrcode: qrcodeHash,
-      company_id: pointService.company_id
-    })
+    return this.servicePointService.save(pointCreate)
   }
 
   public async findAll(): Promise<ServicePoint[]>{

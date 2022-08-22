@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateServicePointDto } from './dto/CreateServicePointDto';
@@ -15,10 +15,22 @@ export class ServicePointService {
 
   public async create(createServicePointDto: CreateServicePointDto): Promise<ServicePoint>{
     const pointService = this.servicePointService.create(createServicePointDto);
+    const pointAlreadyExists = await this.servicePointService.findOne({
+      where: {
+        locale: createServicePointDto.locale
+      }
+    })
   
     const qrcodeHash = await qr(createServicePointDto.locale);
 
     console.log(`QRCODE: `+qrcodeHash);
+
+    if(pointAlreadyExists){
+      throw new HttpException({
+        status: HttpStatus.AMBIGUOUS,
+        error: 'Ponto já cadastrado!'
+      }, HttpStatus.AMBIGUOUS)
+    }
 
     return this.servicePointService.save({
       id: uuid(),

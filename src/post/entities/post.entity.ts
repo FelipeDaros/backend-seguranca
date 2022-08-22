@@ -17,7 +17,7 @@ export class Post{
   @JoinColumn({name: 'company_id', referencedColumnName: 'id'})
   company_id: Company;
 
-  @JoinTable({name: 'points_post'})
+  @JoinTable({name: 'points_posts'})
   @ManyToMany(() => ServicePoint, (points) => points.id, {cascade: true, eager: true})
   points_post: ServicePoint[]
 

@@ -17,7 +17,7 @@ export class ServiceDay{
   @JoinColumn({name: 'post_id', referencedColumnName: 'id'})
   post_id: Post;
 
-  @JoinTable({ name: 'serviceday_itens'})
+  @JoinTable({ name: 'service_itens'})
   @ManyToMany(() => Itens, (itens) => itens.id, {cascade: true, eager: true})
   itens: Itens[];
 

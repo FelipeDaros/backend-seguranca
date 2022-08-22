@@ -138,7 +138,7 @@ export class UsersService {
 
     const jwtToken = await this.authService.createAccessToken(user.id);
 
-    return {id: user.id, name: user.name, jwtToken, email: user.email, isAdmin: user.isAdmin, company: user.company};
+    return {id: user.id, name: user.name, jwtToken, email: user.email, isAdmin: user.isAdmin, company: user.company, post: user.post};
   }
 
   private async checkPassword(password: string, user: Users): Promise<boolean> {

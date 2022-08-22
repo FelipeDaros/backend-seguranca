@@ -1,4 +1,5 @@
 import { Company } from "src/company/entities/company.entity";
+import { Post } from "src/post/entities/post.entity";
 
 
 export class signinReturnDto{
@@ -8,4 +9,5 @@ export class signinReturnDto{
   email: string; 
   isAdmin: number;
   company: Company
+  post: Post;
 }

@@ -13,6 +13,7 @@ import { RoundModule } from './round/round.module';
 import { PostModule } from './post/post.module';
 import { ServiceDayModule } from './service-day/service-day.module';
 import { CompanyModule } from './company/company.module';
+import { AlertModule } from './alert/alert.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { CompanyModule } from './company/company.module';
     RoundModule,
     PostModule,
     ServiceDayModule,
-    CompanyModule
+    CompanyModule,
+    AlertModule
   ],
   controllers: [AppController],
   providers: [AppService]

@@ -23,6 +23,6 @@ export class CreateUserDto{
   @IsString()
   readonly company: Company;
 
-  @IsString()
-  readonly post: Post;
+  @IsEmpty()
+  readonly post?: Post;
 }

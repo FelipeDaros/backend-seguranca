@@ -23,6 +23,12 @@ export class ServicePointController {
     return this.servicePointService.findAll();
   }
 
+  @Get('/company')
+  @HttpCode(HttpStatus.OK)
+  public async findAllPostCompany(@Body() company_id: string){
+    return this.servicePointService.findAllPostCompany(company_id);
+  }
+
   
 
 }

@@ -74,4 +74,15 @@ export class ServicePointService {
   public async findAll(): Promise<ServicePoint[]>{
     return await this.servicePointService.find();
   }
+
+  public async findAllPostCompany(company_id: string): Promise<ServicePoint[]>{
+    console.log(company_id)
+    const posts = await this.servicePointService.find({
+      where: {company_id: 'c0489a54-7dbe-4bd4-9100-de6d8e0f7755'}
+    });
+
+    console.log(posts);
+
+    return posts;
+  }
 }

@@ -37,7 +37,7 @@ export class Users{
 
   @ManyToOne(type => Post, {eager: true})
   @JoinColumn({name: 'post', referencedColumnName: 'id'})
-  post: Post;
+  post?: Post;
 
   constructor(){
     if(!this.id){

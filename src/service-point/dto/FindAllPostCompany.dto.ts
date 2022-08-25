@@ -4,5 +4,5 @@ import { Company } from "src/company/entities/company.entity";
 
 export class FindAllPostCompanyDto{
   @IsString()
-  company_id: Company;
+  company_id: string;
 }

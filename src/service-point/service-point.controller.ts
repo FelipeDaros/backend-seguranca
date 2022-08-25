@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateServicePointDto } from './dto/CreateServicePointDto';
 import { FindAllPostCompanyDto } from './dto/FindAllPostCompany.dto';
@@ -24,10 +24,10 @@ export class ServicePointController {
     return this.servicePointService.findAll();
   }
 
-  @Get('/company')
+  @Get('/company/:id')
   @HttpCode(HttpStatus.OK)
-  public async findAllPostCompany(@Body() findAllPostCompanyDto:FindAllPostCompanyDto){
-    return this.servicePointService.findAllPostCompany(findAllPostCompanyDto);
+  public async findAllPostCompany(@Param('id') id: string){
+    return this.servicePointService.findAllPostCompany(id);
   }
 
   

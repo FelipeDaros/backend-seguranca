@@ -6,6 +6,7 @@ import { ServicePoint } from './entities/service-point.entity';
 import { toString as qr} from 'qrcode';
 import { v4 as uuid } from 'uuid';
 import { Post } from 'src/post/entities/post.entity';
+import { FindAllPostCompanyDto } from './dto/FindAllPostCompany.dto';
 
 @Injectable()
 export class ServicePointService {
@@ -75,13 +76,12 @@ export class ServicePointService {
     return await this.servicePointService.find();
   }
 
-  public async findAllPostCompany(company_id: string): Promise<ServicePoint[]>{
-    console.log(company_id)
+  public async findAllPostCompany(findAllPostCompanyDto: FindAllPostCompanyDto): Promise<ServicePoint[]>{
     const posts = await this.servicePointService.find({
-      where: {company_id: 'c0489a54-7dbe-4bd4-9100-de6d8e0f7755'}
+      where: {
+        company_id: findAllPostCompanyDto.company_id
+      }
     });
-
-    console.log(posts);
 
     return posts;
   }

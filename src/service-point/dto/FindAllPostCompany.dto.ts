@@ -1,8 +1,8 @@
-import { IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 import { Company } from "src/company/entities/company.entity";
 
 
 export class FindAllPostCompanyDto{
-  @IsString()
+  @IsNotEmpty()
   company_id: string;
 }

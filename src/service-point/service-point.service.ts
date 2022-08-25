@@ -76,10 +76,10 @@ export class ServicePointService {
     return await this.servicePointService.find();
   }
 
-  public async findAllPostCompany(id: string): Promise<ServicePoint[]>{
+  public async findAllPostCompany(findAllPostCompanyDto: FindAllPostCompanyDto): Promise<ServicePoint[]>{
     const posts = await this.servicePointService.find({
       where: {
-        company_id: id
+        company_id: findAllPostCompanyDto.company_id
       }
     });
 

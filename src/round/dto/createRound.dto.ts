@@ -1,9 +1,9 @@
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 import { ServicePoint } from "src/service-point/entities/service-point.entity";
 import { Users } from "src/users/entities/user.entity";
 
 
-export class CreateRoundDto{
+export class SaveLocaleDto{
   @IsString()
   readonly user_id: Users;
 
@@ -11,5 +11,14 @@ export class CreateRoundDto{
   readonly point_id: ServicePoint;
 
   @IsString()
+  readonly locale: string;
+
+  @IsString()
   readonly data: Date;
+
+  @IsNumber()
+  readonly latitude: number;
+
+  @IsNumber()
+  readonly longitude: number;
 }

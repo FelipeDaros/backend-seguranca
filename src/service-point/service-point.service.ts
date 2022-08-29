@@ -85,4 +85,10 @@ export class ServicePointService {
 
     return posts;
   }
+
+  public async findOne(id: string): Promise<ServicePoint>{
+    const point = await this.servicePointService.findOne(id);
+
+    return point;
+  }
 }

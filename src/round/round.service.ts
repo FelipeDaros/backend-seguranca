@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpCode, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ServicePoint } from 'src/service-point/entities/service-point.entity';
 import { Repository  } from 'typeorm';
@@ -14,34 +14,31 @@ export class RoundService {
     private readonly servicePointRepository: Repository<ServicePoint>
   ){}
 
-  public async create(saveLocaleDto: SaveLocaleDto): Promise<void>{
+  public async create(saveLocaleDto: SaveLocaleDto): Promise<Round>{
     const nameLocale = await this.servicePointRepository.findOne({
       where: {
         locale: saveLocaleDto.locale
       }
     });
     
-    //const local = this.roundRepository.create(saveLocaleDto);
-    console.log(saveLocaleDto.latitude);
-    console.log(saveLocaleDto.longitude);
-    console.log(saveLocaleDto.locale);
-    console.log(nameLocale.latitude);
-    console.log(nameLocale.longitude);
-    console.log(nameLocale.locale);
+    const local = this.roundRepository.create(saveLocaleDto);
 
-    const lati = Number(saveLocaleDto.latitude);
-    const longi = Number(saveLocaleDto.longitude);
+    const latitudeMais = Number(nameLocale.latitude)*1.001;
+    const latitudeMenos = Number(nameLocale.latitude)*0.999;
 
-    var proximoLati = lati*1.0001;
-    var proximoLongi = longi*1.0001;
-    
-    var calculoLatitude = Number(lati.toFixed(7)) - Number(proximoLati.toFixed(7));
-    var calculoLongitude = Number(longi.toFixed(7)) - Number(proximoLongi.toFixed(7))
+    const longitudeMais = Number(nameLocale.longitude)*1.001;
+    const longitudeMenos = Number(nameLocale.longitude)*0.999;
 
-    /*if((Number(calculoLatitude.toFixed(7)) < 0.003 && Number(calculoLatitude.toFixed(7)) > 0.001) && (Number(calculoLongitude.toFixed(7)) < 0.006 && Number(calculoLongitude.toFixed(7)) > 0.001)){
-      console.log("Próximo");
+    if((saveLocaleDto.longitude >= longitudeMais && saveLocaleDto.latitude <= latitudeMenos) && (saveLocaleDto.latitude >= latitudeMais && saveLocaleDto.latitude <= latitudeMenos)){
+      return await this.roundRepository.save(local);
     }else{
-      console.log("Distante");
-    }*/
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: 'Você não está próximo ao ponto cadastrado!'
+      }, HttpStatus.BAD_REQUEST)
+    }
   }
 }
+
+
+//

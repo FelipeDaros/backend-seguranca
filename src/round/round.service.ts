@@ -35,7 +35,7 @@ export class RoundService {
       throw new HttpException({
         status: HttpStatus.BAD_REQUEST,
         error: 'Você não está próximo ao ponto cadastrado!'
-      }, HttpStatus.BAD_REQUEST)
+      }, HttpStatus.BAD_REQUEST);
     }
   }
 }

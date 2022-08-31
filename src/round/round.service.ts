@@ -29,7 +29,7 @@ export class RoundService {
     const longitudeMais = Number(nameLocale.longitude)*1.001;
     const longitudeMenos = Number(nameLocale.longitude)*0.999;
 
-    if((saveLocaleDto.longitude >= longitudeMais && saveLocaleDto.latitude <= latitudeMenos) && (saveLocaleDto.latitude >= latitudeMais && saveLocaleDto.latitude <= latitudeMenos)){
+    if((saveLocaleDto.longitude >= longitudeMais && saveLocaleDto.latitude <= longitudeMenos) && (saveLocaleDto.latitude >= latitudeMais && saveLocaleDto.latitude <= latitudeMenos)){
       return await this.roundRepository.save(local);
     }else{
       throw new HttpException({

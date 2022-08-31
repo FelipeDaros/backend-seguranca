@@ -20,7 +20,7 @@ export class RoundService {
         locale: saveLocaleDto.locale
       }
     });
-    
+
     const local = this.roundRepository.create(saveLocaleDto);
 
     const latitudeMais = Number(nameLocale.latitude)*1.001;

@@ -31,6 +31,13 @@ export class ServicePointService {
       }
     })
 
+    if(pointAlreadyExists){
+      throw new HttpException({
+        status: HttpStatus.AMBIGUOUS,
+        error: 'Ponto já cadastrado!'
+      }, HttpStatus.AMBIGUOUS)
+    }
+
     const qrcodeHash = await qr(createServicePointDto.locale);
 
     const pointCreate = {
@@ -42,33 +49,7 @@ export class ServicePointService {
       qrcode: qrcodeHash,
       company_id: pointService.company_id
     }
-
-
-    console.log(post);
-    /*if(post.points_post){
-
-      this.postService.update(post.id, {
-        company_id: post.company_id,
-        itens: post.itens,
-        name: post.name,
-        points_post: [
-          ...post.points_post,
-          pointCreate
-        ]     
-      })
-    }*/
-  
     
-
-    //console.log(`QRCODE: `+qrcodeHash);
-
-    if(pointAlreadyExists){
-      throw new HttpException({
-        status: HttpStatus.AMBIGUOUS,
-        error: 'Ponto já cadastrado!'
-      }, HttpStatus.AMBIGUOUS)
-    }
-
     return this.servicePointService.save(pointCreate)
   }
 

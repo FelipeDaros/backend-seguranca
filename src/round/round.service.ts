@@ -14,7 +14,7 @@ export class RoundService {
     private readonly servicePointRepository: Repository<ServicePoint>
   ){}
 
-  public async create(saveLocaleDto: SaveLocaleDto): Promise<Round>{
+  public async create(saveLocaleDto: SaveLocaleDto): Promise<void>{
     const nameLocale = await this.servicePointRepository.findOne({
       where: {
         locale: saveLocaleDto.locale
@@ -23,14 +23,21 @@ export class RoundService {
 
     const local = this.roundRepository.create(saveLocaleDto);
 
-    const latitudeMais = Number(nameLocale.latitude)*1.001;
-    const latitudeMenos = Number(nameLocale.latitude)*0.999;
+    const latitudeMais = Number(nameLocale.latitude)*1.0001;
+    const latitudeMenos = Number(nameLocale.latitude)*0.9999;
 
-    const longitudeMais = Number(nameLocale.longitude)*1.001;
-    const longitudeMenos = Number(nameLocale.longitude)*0.999;
+    const longitudeMais = Number(nameLocale.longitude)*1.0001;
+    const longitudeMenos = Number(nameLocale.longitude)*0.9999;
 
-    if((saveLocaleDto.longitude >= longitudeMais && saveLocaleDto.latitude <= longitudeMenos) && (saveLocaleDto.latitude >= latitudeMais && saveLocaleDto.latitude <= latitudeMenos)){
-      return await this.roundRepository.save(local);
+    //
+
+    console.log(longitudeMenos);
+    console.log(saveLocaleDto.longitude)
+    console.log(longitudeMais)
+
+    if((saveLocaleDto.longitude >= longitudeMais && saveLocaleDto.longitude <= longitudeMenos) && (saveLocaleDto.latitude >= latitudeMais && saveLocaleDto.latitude <= latitudeMenos)){
+      console.log("Você está proxímo");
+      //return await this.roundRepository.save(local);
     }else{
       throw new HttpException({
         status: HttpStatus.BAD_REQUEST,

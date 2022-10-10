@@ -25,8 +25,8 @@ export class PostController {
 
   @Get('/itens')
   @HttpCode(HttpStatus.OK)
-  public findAllItens(){
-    return this.servicePost.listAllItens();
+  public findAllItens(@Body() id:string){
+    return this.servicePost.listAllItensPost(id);
   }
 
 }

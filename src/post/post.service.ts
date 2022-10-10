@@ -73,7 +73,11 @@ export class PostService {
     return this.itensRepository.create({name});
   }
 
-  public async listAllItens(): Promise<Itens[]>{
-    return await this.itensRepository.find();
+  public async listAllItensPost(id: string): Promise<Itens[]>{
+    return await this.itensRepository.find({
+      where: {
+        id
+      }
+    });
   }
 }

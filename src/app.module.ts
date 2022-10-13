@@ -14,6 +14,7 @@ import { PostModule } from './post/post.module';
 import { ServiceDayModule } from './service-day/service-day.module';
 import { CompanyModule } from './company/company.module';
 import { AlertModule } from './alert/alert.module';
+import { TimeAlertModule } from './time-alert/time-alert.module';
 
 @Module({
   imports: [
@@ -35,7 +36,8 @@ import { AlertModule } from './alert/alert.module';
     PostModule,
     ServiceDayModule,
     CompanyModule,
-    AlertModule
+    AlertModule,
+    TimeAlertModule
   ],
   controllers: [AppController],
   providers: [AppService]

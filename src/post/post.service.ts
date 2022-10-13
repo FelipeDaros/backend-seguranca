@@ -79,7 +79,15 @@ export class PostService {
   }
 
   public async listAllItensPost(id: string): Promise<Itens[]>{
-    console.log(id);
+    const postAlreadyExists = await this.postRepository.findOne(id);
+
+    if(!postAlreadyExists){
+      throw new HttpException({
+        status: HttpStatus.NOT_FOUND,
+        error: 'Posto não foi encontrado, ou você não está cadastrado em um posto de serviço!'
+      }, HttpStatus.NOT_FOUND)
+    }
+
     return await getConnection().query(`select pi2."itensId", i.name as itens, i.stats, p.name from itens i join point_itens pi2 on pi2."itensId" = i.id join post p on p.id = pi2."postId" where p.id = '${id}'`);
   }
 }

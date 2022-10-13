@@ -1,0 +1,17 @@
+import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { CreateTimeAlertDto } from './dto/CreateTimeAlert.dto';
+import { TimeAlertService } from './time-alert.service';
+
+@Controller('time-alert')
+export class TimeAlertController {
+
+    constructor(
+        private readonly serviceTimeAlert: TimeAlertService
+    ){}
+
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    public create(@Body() createTimeAlert:CreateTimeAlertDto){
+        return this.serviceTimeAlert.createTimeAlert(createTimeAlert);
+    }
+}

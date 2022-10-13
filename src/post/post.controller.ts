@@ -28,7 +28,7 @@ export class PostController {
   }
 
   @Get('/itens/:id')
-  @HttpCode(HttpStatus.OK)
+  @HttpCode(HttpStatus.FOUND)
   public findAllItens(@Param('id') id: string){
     return this.servicePost.listAllItensPost(id);
   }

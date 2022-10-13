@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreatePostDto } from './dto/createPost-dto';
 import { PostService } from './post.service';
@@ -27,10 +27,10 @@ export class PostController {
     return this.servicePost.findAll();
   }
 
-  @Get('/itens')
+  @Get('/itens/:id')
   @HttpCode(HttpStatus.OK)
-  public findAllItens(@Body() post: IPost){
-    return this.servicePost.listAllItensPost(post);
+  public findAllItens(@Param('id') id: string){
+    return this.servicePost.listAllItensPost(id);
   }
 
 }

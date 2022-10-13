@@ -78,8 +78,8 @@ export class PostService {
     return this.itensRepository.create({name});
   }
 
-  public async listAllItensPost(post: IPost): Promise<Itens[]>{
-    console.log(post.post_id);
-    return await getConnection().query(`select pi2."itensId", i.name as itens, i.stats, p.name from itens i join point_itens pi2 on pi2."itensId" = i.id join post p on p.id = pi2."postId" where p.id = '${post.post_id}'`);
+  public async listAllItensPost(id: string): Promise<Itens[]>{
+    console.log(id);
+    return await getConnection().query(`select pi2."itensId", i.name as itens, i.stats, p.name from itens i join point_itens pi2 on pi2."itensId" = i.id join post p on p.id = pi2."postId" where p.id = '${id}'`);
   }
 }

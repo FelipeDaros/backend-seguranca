@@ -3,6 +3,10 @@ import { AuthGuard } from '@nestjs/passport';
 import { CreatePostDto } from './dto/createPost-dto';
 import { PostService } from './post.service';
 
+interface IPost{
+  post_id: string;
+}
+
 @Controller('post')
 export class PostController {
   constructor(
@@ -25,8 +29,8 @@ export class PostController {
 
   @Get('/itens')
   @HttpCode(HttpStatus.OK)
-  public findAllItens(@Body() id:string){
-    return this.servicePost.listAllItensPost(id);
+  public findAllItens(@Body() post: IPost){
+    return this.servicePost.listAllItensPost(post);
   }
 
 }

@@ -2,9 +2,13 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Itens } from 'src/post/entities/itens.entity';
 import { ServicePoint } from 'src/service-point/entities/service-point.entity';
-import { Repository } from 'typeorm';
+import { Connection, createQueryBuilder, getConnection, Repository } from 'typeorm';
 import { CreatePostDto } from './dto/createPost-dto';
 import { Post } from './entities/post.entity';
+
+interface IPost{
+  post_id: string;
+}
 
 @Injectable()
 export class PostService {
@@ -16,6 +20,7 @@ export class PostService {
   @InjectRepository(Itens)
   private readonly itensRepository: Repository<Itens>
  ){}
+
 
  public async create(createPostDto: CreatePostDto): Promise<Post>{
   const points = await Promise.all(
@@ -73,7 +78,8 @@ export class PostService {
     return this.itensRepository.create({name});
   }
 
-  public async listAllItensPost(id: string): Promise<Itens[]>{
-    return await this.itensRepository.find();
+  public async listAllItensPost(post: IPost): Promise<Itens[]>{
+    console.log(post.post_id);
+    return await getConnection().query(`select pi2."itensId", i.name as itens, i.stats, p.name from itens i join point_itens pi2 on pi2."itensId" = i.id join post p on p.id = pi2."postId" where p.id = '${post.post_id}'`);
   }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 import { CreateTimeAlertDto } from './dto/CreateTimeAlert.dto';
 import { TimeAlertService } from './time-alert.service';
 
@@ -13,5 +13,11 @@ export class TimeAlertController {
     @HttpCode(HttpStatus.CREATED)
     public create(@Body() createTimeAlert:CreateTimeAlertDto){
         return this.serviceTimeAlert.createTimeAlert(createTimeAlert);
+    }
+
+    @Get('/:id')
+    @HttpCode(HttpStatus.FOUND)
+    public listLatestAlertUser(@Param('id') user_id: string){
+        return this.serviceTimeAlert.listLatestAlertUser(user_id);
     }
 }

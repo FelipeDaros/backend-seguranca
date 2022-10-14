@@ -19,7 +19,7 @@ export class TimeAlertService {
 
     public async listLatestAlertUser(user_id: string): Promise<TimeAlert>{
 
-      return await getConnection().query('select * from "time-alert" ta order by ta."latestAlert" desc limit 1');
+      return await getConnection().query(`select * from "time-alert" ta where ta.user_id = '${user_id}' order by ta."latestAlert" desc limit 1`);
     }
 
 }

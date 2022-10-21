@@ -1,6 +1,6 @@
 import { Company } from "src/company/entities/company.entity";
 import { Users } from "src/users/entities/user.entity";
-import { CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid';
 
 @Entity('time-alert')
@@ -15,6 +15,9 @@ export class TimeAlert{
     @ManyToOne(type => Company, {eager: true})
     @JoinColumn({name: 'company_id', referencedColumnName: 'id'})
     company_id: Company;
+
+    @Column({default: 0})
+    late: number;
 
     @CreateDateColumn()
     latestAlert: Date;

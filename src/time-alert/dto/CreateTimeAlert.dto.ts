@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 import { Company } from "src/company/entities/company.entity";
 import { Users } from "src/users/entities/user.entity";
 
@@ -12,4 +12,7 @@ export class CreateTimeAlertDto{
 
     @IsString()
     readonly latestAlert: Date;
+
+    @IsNumber()
+    readonly late: number;
 }

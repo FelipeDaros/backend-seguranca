@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Itens } from 'src/post/entities/itens.entity';
 import { Users } from 'src/users/entities/user.entity';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { CreateServiceDayDto } from './dto/create-service-day.dto';
 import { ServiceDay } from './entities/service-day.entity';
 
@@ -47,12 +47,10 @@ export class ServiceDayService {
     return this.itensRepository.create({name});
   }
 
-  public async findLatest(): Promise<ServiceDay>{
-    return await this.serviceDayRepository.findOne({
-      order: {
-        created_at: 'DESC'
-      }
-    });
+  public async findLatest(post_id: string): Promise<ServiceDay>{
+    return await getConnection().query(`select distinct  i."name" as itens, sd.report_reading, u."name" from "service-day" sd join post p on p.id = sd.post_id join point_itens pi2 on pi2."postId" = p.id join itens i on i.id = pi2."itensId" join users u on sd.user_id = u.id where p.id = '${post_id}'`);
   }
+
+  
   
 }

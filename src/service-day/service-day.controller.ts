@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateServiceDayDto } from './dto/create-service-day.dto';
 import { ServiceDayService } from './service-day.service';
@@ -25,10 +25,10 @@ export class ServiceDayController {
   }
 
 
-  @Get('/latest')
+  @Get('/latest/:post_id')
   @HttpCode(HttpStatus.OK)
-  public findLatest(){
-    return this.serviceDayService.findLatest();
+  public findLatest(@Param('post_id') post_id: string){
+    return this.serviceDayService.findLatest(post_id);
   }
 
 }

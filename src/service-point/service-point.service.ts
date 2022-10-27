@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { CreateServicePointDto } from './dto/CreateServicePointDto';
 import { ServicePoint } from './entities/service-point.entity';
 import { toString as qr} from 'qrcode';
@@ -57,14 +57,8 @@ export class ServicePointService {
     return await this.servicePointService.find();
   }
 
-  public async findAllPostCompany(id: string): Promise<ServicePoint[]>{
-    const posts = await this.servicePointService.find({
-      where: {
-        company_id: id
-      }
-    });
-
-    return posts;
+  public async findServicePost(id: string): Promise<ServicePoint[]>{
+    return await getConnection().query(`select sp.locale, p."name", c."name"  from service_point sp join post p on p.company_id = sp.company_id join company c on c.id = p.company_id join users u on u.post = p.id where p.id = '${id}'`)
   }
 
   public async findOne(id: string): Promise<ServicePoint>{

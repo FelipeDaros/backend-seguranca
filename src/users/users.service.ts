@@ -126,10 +126,11 @@ export class UsersService {
   ): Promise<signinReturnDto>{
     const user = await this.userRepository.findOne({
       where: {
-        email: signinDto.email
+        name: signinDto.name
+        
       }
     })
-    console.log('RODA');
+    
     const match = await this.checkPassword(signinDto.password, user);
 
     if (!match) {

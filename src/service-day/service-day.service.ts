@@ -48,7 +48,7 @@ export class ServiceDayService {
   }
 
   public async findLatest(post_id: string): Promise<ServiceDay>{
-    return await getConnection().query(`select distinct  i."name" as itens, sd.report_reading, u."name" from "service-day" sd join post p on p.id = sd.post_id join point_itens pi2 on pi2."postId" = p.id join itens i on i.id = pi2."itensId" join users u on sd.user_id = u.id where p.id = '${post_id}'`);
+    return await getConnection().query(`select distinct  i."name" as itens from "service-day" sd join post p on p.id = sd.post_id join point_itens pi2 on pi2."postId" = p.id join itens i on i.id = pi2."itensId" join users u on sd.user_id = u.id where p.id = '${post_id}'`);
   }
 
   

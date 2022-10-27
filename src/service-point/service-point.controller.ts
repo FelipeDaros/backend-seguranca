@@ -26,13 +26,13 @@ export class ServicePointController {
 
   @Get('company/:id')
   @HttpCode(HttpStatus.OK)
-  public async findAllPostCompany(@Param() id: string){
+  public async findAllPostCompany(@Param('id') id: string){
     return this.servicePointService.findAllPostCompany(id);
   }
 
   @Get('/:id')
   @HttpCode(HttpStatus.OK)
-  public async findOne(@Param() id: string){
+  public async findOne(@Param('id') id: string){
     return this.servicePointService.findOne(id);
   }
 

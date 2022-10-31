@@ -20,4 +20,10 @@ export class TimeAlertController {
     public listLatestAlertUser(@Param('id') user_id: string){
         return this.serviceTimeAlert.listLatestAlertUser(user_id);
     }
+
+    @Get('/findalert/:post_id')
+    @HttpCode(HttpStatus.FOUND)
+    public findTimeAlertUser(@Param('post_id') user_id: string){
+        return this.serviceTimeAlert.findTimeAlertUser(user_id);
+    }
 }

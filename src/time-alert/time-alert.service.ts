@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createQueryBuilder, getConnection, Repository } from 'typeorm';
 import { CreateTimeAlertDto } from './dto/CreateTimeAlert.dto';
@@ -24,7 +24,7 @@ export class TimeAlertService {
 
 
     public async findTimeAlertUser(user_id: string): Promise<TimeAlert>{
-      return await this.timeAlertRepository.findOne({
+      const found = await this.timeAlertRepository.findOne({
         where: {
           user_id: user_id
         },
@@ -32,6 +32,15 @@ export class TimeAlertService {
           latestAlert: 'DESC'
         }
       })
+
+      if(!found){
+        throw new HttpException({
+          status: HttpStatus.NOT_FOUND,
+          error: 'Não há registros de um último alerta, acabamos de gerar o seu primeiro alerta!'
+        }, HttpStatus.NOT_FOUND);
+      }
+
+      return found;
       //return await getConnection().query(`select * from "time-alert" ta join users u on u.id = ta.user_id where ta.user_id = '${user_id}' order by ta."latestAlert" desc limit 1`);
     }
 }

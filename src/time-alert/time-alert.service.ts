@@ -23,7 +23,7 @@ export class TimeAlertService {
     }
 
 
-    public async findTimeAlertUser(user_id: string): Promise<TimeAlert>{
+    public async findTimeAlertUser(user_id: string): Promise<Boolean>{
       const found = await this.timeAlertRepository.findOne({
         where: {
           user_id: user_id
@@ -40,7 +40,7 @@ export class TimeAlertService {
         }, HttpStatus.NOT_FOUND);
       }
 
-      return found;
+      return true;
       //return await getConnection().query(`select * from "time-alert" ta join users u on u.id = ta.user_id where ta.user_id = '${user_id}' order by ta."latestAlert" desc limit 1`);
     }
 }

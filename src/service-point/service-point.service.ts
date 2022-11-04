@@ -58,7 +58,7 @@ export class ServicePointService {
   }
 
   public async findServicePost(id: string): Promise<ServicePoint[]>{
-    return await getConnection().query(`select sp.id, sp.locale, p."name", c."name", sp.stats  from service_point sp join post p on p.company_id = sp.company_id join company c on c.id = p.company_id join users u on u.post = p.id where p.id = '${id}'`)
+    return await getConnection().query(`select distintic sp.id, sp.locale, p."name", c."name", sp.stats  from service_point sp join post p on p.company_id = sp.company_id join company c on c.id = p.company_id join users u on u.post = p.id where p.id = '${id}'`)
   }
 
   public async findOne(id: string): Promise<ServicePoint>{

@@ -4,6 +4,7 @@ import { createQueryBuilder, getConnection, Repository } from 'typeorm';
 import { CreateTimeAlertDto } from './dto/CreateTimeAlert.dto';
 import { TimeAlert } from './entities/timeAlert.entity';
 
+
 @Injectable()
 export class TimeAlertService {
   constructor(
@@ -17,9 +18,14 @@ export class TimeAlertService {
       return await this.timeAlertRepository.save(timeAlert);
     }
 
-    public async listLatestAlertUser(user_id: string): Promise<TimeAlert>{
+    public async listLatestAlertUser(user_id: string){
+      const retorno = await this.timeAlertRepository.findOne({
+        where: {
+          user_id
+        }
+      }) 
 
-      return await getConnection().query(`select * from "time-alert" ta where ta.user_id = '${user_id}' order by ta."latestAlert" desc limit 1`);
+      return retorno.latestAlert
     }
 
 

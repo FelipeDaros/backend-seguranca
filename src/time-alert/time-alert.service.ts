@@ -25,6 +25,13 @@ export class TimeAlertService {
         }
       }) 
 
+      if(!retorno){
+        throw new HttpException({
+          status: HttpStatus.NOT_FOUND,
+          error: 'Não há registros de um último alerta'
+        }, HttpStatus.NOT_FOUND);
+      }
+
       return retorno.latestAlert
     }
 

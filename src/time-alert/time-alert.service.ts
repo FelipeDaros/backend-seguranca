@@ -22,6 +22,9 @@ export class TimeAlertService {
       const retorno = await this.timeAlertRepository.findOne({
         where: {
           user_id
+        },
+        order: {
+          latestAlert: "DESC"
         }
       }) 
 

@@ -9,6 +9,7 @@ import { ServiceDay } from './entities/service-day.entity';
 export interface IDate {
   start_date: string;
   end_date: string;
+  post_id: string;
 }
 
 @Injectable()
@@ -52,8 +53,8 @@ export class ServiceDayService {
     return this.itensRepository.create({name});
   }
 
-  public async findLatest({start_date, end_date}: IDate): Promise<ServiceDay>{
-    return await getConnection().query(`select i."name"  from service_itens si join "service-day" sd on sd.id = si."serviceDayId" join itens i on i.id = si."itensId" join post p on p.id = sd.post_id where sd.created_at between '${start_date}' and '${end_date}'`);
+  public async findLatest({start_date, end_date, post_id}: IDate): Promise<ServiceDay>{
+    return await getConnection().query(`select i."name"  from service_itens si join "service-day" sd on sd.id = si."serviceDayId" join itens i on i.id = si."itensId" join post p on p.id = sd.post_id where sd.created_at between '${start_date}' and '${end_date}' and p.id = '${post_id}'`);
   }
 
   

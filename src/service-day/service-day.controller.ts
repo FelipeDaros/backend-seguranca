@@ -27,8 +27,8 @@ export class ServiceDayController {
 
   @Get('/latest')
   @HttpCode(HttpStatus.OK)
-  public findLatest(@Body() {end_date, start_date}: IDate){
-    return this.serviceDayService.findLatest({end_date, start_date});
+  public findLatest(@Body() {end_date, start_date, post_id}: IDate){
+    return this.serviceDayService.findLatest({end_date, start_date, post_id});
   }
 
 }

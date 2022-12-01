@@ -6,6 +6,11 @@ import { getConnection, Repository } from 'typeorm';
 import { CreateServiceDayDto } from './dto/create-service-day.dto';
 import { ServiceDay } from './entities/service-day.entity';
 
+export interface IDate {
+  start_date: string;
+  end_date: string;
+}
+
 @Injectable()
 export class ServiceDayService {
   constructor(
@@ -47,8 +52,8 @@ export class ServiceDayService {
     return this.itensRepository.create({name});
   }
 
-  public async findLatest(post_id: string): Promise<ServiceDay>{
-    return await getConnection().query(`select distinct  i."name" as itens from "service-day" sd join post p on p.id = sd.post_id join point_itens pi2 on pi2."postId" = p.id join itens i on i.id = pi2."itensId" join users u on sd.user_id = u.id where p.id = '${post_id}'`);
+  public async findLatest({start_date, end_date}: IDate): Promise<ServiceDay>{
+    return await getConnection().query(`select i."name"  from service_itens si join "service-day" sd on sd.id = si."serviceDayId" join itens i on i.id = si."itensId" join post p on p.id = sd.post_id where sd.created_at between '${start_date}' and '${end_date}'`);
   }
 
   

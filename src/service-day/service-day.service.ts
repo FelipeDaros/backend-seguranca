@@ -38,7 +38,7 @@ export class ServiceDayService {
   public async findAll(): Promise<ServiceDay[]>{
     return await this.serviceDayRepository.find({
       relations: ['itens']
-    });
+    })
   }
 
 

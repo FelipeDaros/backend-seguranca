@@ -20,7 +20,7 @@ import { TimeAlertModule } from './time-alert/time-alert.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: 'postgres://fbgqqust:l_uPcK7QN0O5MLSUg6RzfJYOhJUtAheJ@motty.db.elephantsql.com/fbgqqust',
+      url: 'postgres://fbgqqust:HMkpNWhIZYW_tdt5qKQD1xTPHqKiVPV0@motty.db.elephantsql.com/fbgqqust',
       entities: [__dirname + '/**/*.entity.js'],
       logging: true,
       synchronize: true,

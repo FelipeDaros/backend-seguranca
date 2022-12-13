@@ -2,6 +2,7 @@
 /dist/*
 *dist
 /node_modules
+db.sql
 
 # Logs
 logs

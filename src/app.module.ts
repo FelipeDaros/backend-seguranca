@@ -19,8 +19,8 @@ import { TimeAlertModule } from './time-alert/time-alert.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      url: 'postgres://fbgqqust:HMkpNWhIZYW_tdt5qKQD1xTPHqKiVPV0@motty.db.elephantsql.com/fbgqqust',
+      type: 'sqlite',
+      database: './src/db.sql',
       entities: [__dirname + '/**/*.entity.js'],
       logging: true,
       synchronize: true,

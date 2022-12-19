@@ -22,7 +22,6 @@ import { TimeAlertModule } from './time-alert/time-alert.module';
       type: 'sqlite',
       database: './src/db.sql',
       entities: [__dirname + '/**/*.entity.js'],
-      logging: true,
       synchronize: true,
       autoLoadEntities: false
     }),
